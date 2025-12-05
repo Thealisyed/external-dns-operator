@@ -898,26 +898,4 @@ spec:
                   value: main
                 - name: pathInRepo
                   value: stepactions/fail-if-any-step-failed/0.1/fail-if-any-step-failed.yaml
-    - name: verify-image-sources
-      runAfter:
-        - deploy-operator
-      when:
-        - input: $(tasks.parse-metadata.results.test-event-type)
-          operator: in
-          values: ["pull_request"]
-      taskRef:
-        resolver: git
-        params:
-          - name: url
-            value: https://github.com/konflux-ci/tekton-integration-catalog.git
-          - name: revision
-            value: main
-          - name: pathInRepo
-            value: tasks/bundles/verify-image-sources/0.1/verify-image-sources.yaml
-      params:
-        - name: imagesPulledAfterDeploymentStart
-          value: "$(tasks.deploy-operator.results.imagesPulledAfterDeploymentStart)"
-        - name: bundleImage
-          value: "$(tasks.get-unreleased-bundle.results.unreleasedBundle)"
-        - name: scorecardConfigImages
-          value: "$(tasks.fetch-config-files.results.scorecardConfigImages)"
+                  

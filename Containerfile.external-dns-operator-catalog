@@ -11,7 +11,7 @@ RUN test "$(sha1sum Dockerfile.cached | cut -d' ' -f1)" = "$(sha1sum Dockerfile.
 # The base image is expected to contain
 # /bin/opm (with a serve subcommand) and /bin/grpc_health_probe
 # Note: The base image version should match the targeted OCP version
-FROM registry.redhat.io/openshift4/ose-operator-registry-rhel9:v4.19
+FROM registry.redhat.io/openshift4/ose-operator-registry-rhel9:v4.21
 COPY LICENSE /licenses/
 # dummy copy to trigger the drift detection
 COPY --from=drift /app/Dockerfile.catalog .
